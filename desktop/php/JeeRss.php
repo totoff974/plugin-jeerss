@@ -134,6 +134,31 @@ foreach ($eqLogics as $eqLogic) {
 						<input type="checkbox" class="eqLogicAttr bootstrapSwitch" data-label-text="{{Heure}}" data-l1key="configuration" data-l2key="heure" checked />
 					</div>
 				</div>
+				<div class="form-group">
+				<label class="col-lg-3 control-label">{{Dimensions du Widget}}</label>
+					<div class="col-sm-6">
+						<div class="col-sm-3">
+						<input type="checkbox" class="eqLogicAttr bootstrapSwitch" data-label-text="{{Auto}}" data-l1key="configuration" data-l2key="auto"/>
+						</div>
+						<div class="col-sm-6">
+						<input type="range" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="taille" max="100" min="0" step="5" />
+						<output></output>
+						<script>
+						$(function() {
+							$('.eqLogicAttr[data-l1key=configuration][data-l2key=taille]').load('input', function() {
+								var $old_set = $(this).val();
+								$(this).next().text($old_set+'%');
+							});
+							var $old_val = $('.eqLogicAttr[data-l1key=configuration][data-l2key=taille]').val();
+							$(this).next().text($old_val+'%');
+							$('.eqLogicAttr[data-l1key=configuration][data-l2key=taille]').on('input', function() {
+								var $set = $(this).val();
+								$(this).next().text($set+'%');
+							});
+						});
+						</script>
+					</div>
+				</div>
 			</fieldset> 
 		</form>
 </div>

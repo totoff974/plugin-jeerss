@@ -177,9 +177,15 @@ class JeeRss extends eqLogic {
 		// les variables
 	
 		$rss = JeeRss::affiche_rss();
-		
+
 		$replace['#vitesse#'] = JeeRss::getConfiguration('vitesse');
 		$replace['#direction#'] = JeeRss::getConfiguration('sens');
+
+		$auto = JeeRss::getConfiguration('auto');
+		if ($auto == 0) {
+			$taille = JeeRss::getConfiguration('taille');
+			$replace['#width#'] = JeeRss::getConfiguration('taille').'%';
+		}
 		
 		$date = JeeRss::getConfiguration('date');
 		$heure = JeeRss::getConfiguration('heure');
