@@ -1,0 +1,3 @@
+=== Configuration
+Après installation du plugin, Choisir la fréquence d'actualisation de la lecture du Flux.
+
