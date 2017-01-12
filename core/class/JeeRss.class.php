@@ -275,7 +275,9 @@ class JeeRss extends eqLogic {
 		}
 		
 		$cmd = 'wget ' . $adresse . ' -O ' . dirname(__FILE__) . '/../../core/config/' . JeeRss::getId() . ' 2>&1';
+		$cmd_droit =  'sudo chmod 777 ' . dirname(__FILE__) . '/../../core/config/' . JeeRss::getId() . ' 2>&1';
 		exec($cmd);
+		exec($cmd_droit);
 	}
 
 	public function remove_cache_rss() {
