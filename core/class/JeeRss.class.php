@@ -32,6 +32,7 @@ class JeeRss extends eqLogic {
 		if (config::byKey('frequence', 'JeeRss') == '1m') {
 			foreach (eqLogic::byType('JeeRss') as $JeeRss) {
 				$JeeRss->cache_rss();
+				sleep(1);
 				$JeeRss->refreshWidget();
 				log::add('JeeRss', 'debug', 'Actualisation Flux RSS toutes les minutes');
 			}
@@ -42,6 +43,7 @@ class JeeRss extends eqLogic {
 		if (config::byKey('frequence', 'JeeRss') == '5m') {
 			foreach (eqLogic::byType('JeeRss') as $JeeRss) {
 				$JeeRss->cache_rss();
+				sleep(1);
 				$JeeRss->refreshWidget();
 				log::add('JeeRss', 'debug', 'Actualisation Flux RSS toutes les 5 minutes');
 			}
@@ -52,6 +54,7 @@ class JeeRss extends eqLogic {
 		if (config::byKey('frequence', 'JeeRss') == '15m') {
 			foreach (eqLogic::byType('JeeRss') as $JeeRss) {
 				$JeeRss->cache_rss();
+				sleep(1);
 				$JeeRss->refreshWidget();
 				log::add('JeeRss', 'debug', 'Actualisation Flux RSS toutes les 15 minutes');
 			}
@@ -62,6 +65,7 @@ class JeeRss extends eqLogic {
 		if (config::byKey('frequence', 'JeeRss') == '30m') {
 			foreach (eqLogic::byType('JeeRss') as $JeeRss) {
 				$JeeRss->cache_rss();
+				sleep(1);
 				$JeeRss->refreshWidget();
 				log::add('JeeRss', 'debug', 'Actualisation Flux RSS toutes les 30 minutes');
 			}
@@ -72,6 +76,7 @@ class JeeRss extends eqLogic {
 		if (config::byKey('frequence', 'JeeRss') == '1h') {
 			foreach (eqLogic::byType('JeeRss') as $JeeRss) {
 				$JeeRss->cache_rss();
+				sleep(1);
 				$JeeRss->refreshWidget();
 				log::add('JeeRss', 'debug', 'Actualisation Flux RSS 1 fois par heure');
 			}
@@ -82,6 +87,7 @@ class JeeRss extends eqLogic {
 		if (config::byKey('frequence', 'JeeRss') == '1j') {
 			foreach (eqLogic::byType('JeeRss') as $JeeRss) {
 				$JeeRss->cache_rss();
+				sleep(1);
 				$JeeRss->refreshWidget();
 				log::add('JeeRss', 'debug', 'Actualisation Flux RSS 1 fois par jour');
 			}
@@ -155,6 +161,7 @@ class JeeRss extends eqLogic {
 
     public function postUpdate() {
 		$this->cache_rss();
+		sleep(1);
 		$this->refreshWidget();
     }
 
@@ -174,40 +181,48 @@ class JeeRss extends eqLogic {
 		
 		$_version = jeedom::versionAlias($_version);
 		
-		// les variables
-	
-		$rss = JeeRss::affiche_rss();
+		
+		$cache_Rss = dirname(__FILE__) . '/../../core/config/' . JeeRss::getId();
+		if(file_exists($cache_Rss)) {
+			log::add('JeeRss', 'debug', 'DEBUG - Le fichier cache existe -> ' . $cache_Rss);
+			$rss = JeeRss::affiche_rss();
+			
+			$replace['#vitesse#'] = JeeRss::getConfiguration('vitesse');
+			$replace['#direction#'] = JeeRss::getConfiguration('sens');
 
-		$replace['#vitesse#'] = JeeRss::getConfiguration('vitesse');
-		$replace['#direction#'] = JeeRss::getConfiguration('sens');
-
-		$auto = JeeRss::getConfiguration('auto');
-		if ($auto == 0) {
-			$taille = JeeRss::getConfiguration('taille');
-			$replace['#width#'] = JeeRss::getConfiguration('taille').'%';
-		}
-		
-		$date = JeeRss::getConfiguration('date');
-		$heure = JeeRss::getConfiguration('heure');
-		
-		for ($i = 1; $i <= 15; $i++) {
-			$espacement .= '&nbsp;';
-		}
-		$espacement = $espacement.'|'.$espacement;
-		
-		foreach ($rss as $tab) {
-			if ($date == 1) {
-				$ligne .= ' le ' . date("d/m/Y",strtotime($tab[3]));
-			}
-			if ($heure == 1) {
-				$ligne .= ' à ' . date("H:m",strtotime($tab[3])); 
+			$auto = JeeRss::getConfiguration('auto');
+			if ($auto == 0) {
+				$taille = JeeRss::getConfiguration('taille');
+				$replace['#width#'] = JeeRss::getConfiguration('taille').'%';
 			}
 			
-			$ligne .= ' - ' . '<a target="_blank" href="'.$tab[1].'">'.$tab[0].'</a>' . $espacement;
-		}
+			$date = JeeRss::getConfiguration('date');
+			$heure = JeeRss::getConfiguration('heure');
+			
+			for ($i = 1; $i <= 15; $i++) {
+				$espacement .= '&nbsp;';
+			}
+			$espacement = $espacement.'|'.$espacement;
+			
+			foreach ($rss as $tab) {
+				if ($date == 1) {
+					$ligne .= ' le ' . date("d/m/Y",strtotime($tab[3]));
+				}
+				if ($heure == 1) {
+					$ligne .= ' à ' . date("H:m",strtotime($tab[3])); 
+				}
+				
+				$ligne .= ' - ' . '<a target="_blank" href="'.$tab[1].'">'.$tab[0].'</a>' . $espacement;
+			}
 
-		$replace['#flux#'] = $ligne;
-		
+			$replace['#flux#'] = $ligne;
+		}
+		else {
+			log::add('JeeRss', 'debug', 'DEBUG - Le fichier cache introuvable -> ' . $cache_Rss);
+			$replace['#flux#'] = 'Le fichier cache introuvable -> ' . $cache_Rss;
+		}	
+		// les variables
+	
 		$html = template_replace($replace, getTemplate('core', $_version, 'current','JeeRss'));
 		
 		return $html;
@@ -307,7 +322,7 @@ class JeeRssCmd extends cmd {
 	
     public function execute($_options = array()) 
 	{
-		return;
+
     }
 
     /*     * **********************Getteur Setteur*************************** */
