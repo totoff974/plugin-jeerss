@@ -100,8 +100,8 @@ foreach ($eqLogics as $eqLogic) {
 				<div class="form-group">
 					<label class="col-sm-2 control-label" ></label>
 					<div class="col-sm-9">
-						<input type="checkbox" class="eqLogicAttr bootstrapSwitch" data-label-text="{{Activer}}" data-l1key="isEnable" checked />
-						<input type="checkbox" class="eqLogicAttr bootstrapSwitch" data-label-text="{{Visible}}" data-l1key="isVisible" checked />
+						<label class="checkbox-inline"><input type="checkbox" class="eqLogicAttr" data-l1key="isEnable" checked/>{{Activer}}</label>
+						<label class="checkbox-inline"><input type="checkbox" class="eqLogicAttr" data-l1key="isVisible" checked/>{{Visible}}</label>
 					</div>
 				</div>
 				<div class="form-group">
@@ -130,15 +130,15 @@ foreach ($eqLogics as $eqLogic) {
 				<div class="form-group">
 				<label class="col-lg-3 control-label">{{Afficher la date et/ou l'heure}}</label>
 					<div class="col-sm-9">
-						<input type="checkbox" class="eqLogicAttr bootstrapSwitch" data-label-text="{{Date}}" data-l1key="configuration" data-l2key="date" checked />
-						<input type="checkbox" class="eqLogicAttr bootstrapSwitch" data-label-text="{{Heure}}" data-l1key="configuration" data-l2key="heure" checked />
+						<label class="checkbox-inline"><input type="checkbox" class="eqLogicAttr" data-l1key="configuration" data-l2key="date" checked/>{{Date}}</label>
+						<label class="checkbox-inline"><input type="checkbox" class="eqLogicAttr" data-l1key="configuration" data-l2key="heure" checked/>{{Heure}}</label>
 					</div>
 				</div>
 				<div class="form-group">
 				<label class="col-lg-3 control-label">{{Dimensions du Widget}}</label>
 					<div class="col-sm-6">
 						<div class="col-sm-3">
-						<input type="checkbox" class="eqLogicAttr bootstrapSwitch" data-label-text="{{Auto}}" data-l1key="configuration" data-l2key="auto"/>
+						<label class="checkbox-inline"><input type="checkbox" class="eqLogicAttr" data-l1key="configuration" data-l2key="auto" checked/>{{Dimensions Auto}}</label>
 						</div>
 						<div class="col-sm-6">
 						<input type="range" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="taille" max="100" min="0" step="5" />
