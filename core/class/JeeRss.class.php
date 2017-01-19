@@ -18,9 +18,6 @@
 
 /* * ***************************Includes********************************* */
 require_once dirname(__FILE__) . '/../../../../core/php/core.inc.php';
-require_once dirname(__FILE__) . '/../../core/php/JeeRss.inc.php';
-
-include_file('core', 'JeeRss', 'config', 'JeeRss');
 
 class JeeRss extends eqLogic {
     /*     * *************************Attributs****************************** */
@@ -320,10 +317,10 @@ class JeeRssCmd extends cmd {
       }
      */
 	
-    public function execute($_options = array()) 
-	{
+    // public function execute($_options = array()) 
+	// {
 
-    }
+    // }
 
     /*     * **********************Getteur Setteur*************************** */
 }
