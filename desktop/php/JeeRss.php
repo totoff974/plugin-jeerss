@@ -3,7 +3,6 @@ if (!isConnect('admin')) {
 	throw new Exception('{{401 - Accès non autorisé}}');
 }
 
-include_file('core', 'JeeRss', 'config', 'JeeRss');
 sendVarToJS('eqType', 'JeeRss');
 $eqLogics = eqLogic::byType('JeeRss');
 
