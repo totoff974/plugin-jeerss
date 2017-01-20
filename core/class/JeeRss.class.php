@@ -317,10 +317,9 @@ class JeeRssCmd extends cmd {
       }
      */
 	
-    // public function execute($_options = array()) 
-	// {
-
-    // }
+	public function execute($_options = array()) {
+		return false;
+	}
 
     /*     * **********************Getteur Setteur*************************** */
 }
