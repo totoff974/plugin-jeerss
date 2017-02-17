@@ -18,6 +18,9 @@
 
 /* * ***************************Includes********************************* */
 require_once dirname(__FILE__) . '/../../../../core/php/core.inc.php';
+require_once dirname(__FILE__) . '/../../core/php/JeeRss.inc.php';
+require_once dirname(__FILE__) . '/../../core/config/JeeRss.config.php';
+include_file('core', 'JeeRss', 'config', 'JeeRss');
 
 class JeeRss extends eqLogic {
     /*     * *************************Attributs****************************** */
@@ -145,11 +148,12 @@ class JeeRss extends eqLogic {
     }
 
     public function preSave() {
-       
+
     }
 
     public function postSave() {
-
+		if (!$this->getId())
+          return;
     }
 
     public function preUpdate() {
@@ -160,6 +164,8 @@ class JeeRss extends eqLogic {
 		$this->cache_rss();
 		sleep(1);
 		$this->refreshWidget();
+		$this->autoAjoutCommande();
+		$this->affiche_rss();
     }
 
     public function preRemove() {
@@ -183,6 +189,10 @@ class JeeRss extends eqLogic {
 		if(file_exists($cache_Rss)) {
 			log::add('JeeRss', 'debug', 'DEBUG - Le fichier cache existe -> ' . $cache_Rss);
 			$rss = JeeRss::affiche_rss();
+			
+			foreach ($this->getCmd('action') as $cmd) {
+				$replace['#cmd_refresh_id#'] = $cmd->getId();
+			}
 			
 			$replace['#vitesse#'] = JeeRss::getConfiguration('vitesse');
 			$replace['#direction#'] = JeeRss::getConfiguration('sens');
@@ -273,7 +283,13 @@ class JeeRss extends eqLogic {
 		$fichier = dirname(__FILE__) . '/../../core/config/' . JeeRss::getId();
 		
 		$rss = JeeRss::lecture_rss("$fichier",array("title","link","description","pubDate"));
-		
+
+		foreach (eqLogic::getCmd() as $info) {
+			$info->setConfiguration('titre', $rss[0][0]);
+			$info->save();
+			$info->event($rss[0][0]);
+		}
+			
 		return $rss;
 	}
 
@@ -296,7 +312,29 @@ class JeeRss extends eqLogic {
 		$fichier = dirname(__FILE__) . '/../../core/config/' . JeeRss::getId();
 		@unlink($fichier);
 		log::add('JeeRss', 'debug', 'Suppression Cache Flux RSS : ' . JeeRss::getName() . ' -> ' . $fichier);
-	}	
+	}
+
+    public function autoAjoutCommande() {
+		
+		global $listCmdJeeRss;
+		$list_cmd = $listCmdJeeRss;
+		
+        foreach ($list_cmd as $cmd) {
+			   if (cmd::byEqLogicIdCmdName($this->getId(), $cmd['name']))
+					return;
+				
+			   if ($cmd) {
+					$JeeRssCmd = new JeeRssCmd();
+					$JeeRssCmd->setName(__($cmd['name'], __FILE__));
+					$JeeRssCmd->setEqLogic_id($this->id);
+					$JeeRssCmd->setType($cmd['type']);
+					$JeeRssCmd->setSubType($cmd['subType']);
+					$JeeRssCmd->setConfiguration('titre', $cmd['configuration']['titre']);
+					$JeeRssCmd->save();
+			   }
+
+        }
+    }	
     /*     * **********************Getteur Setteur*************************** */
 	
 }
@@ -318,7 +356,15 @@ class JeeRssCmd extends cmd {
      */
 	
 	public function execute($_options = array()) {
-		return false;
+
+		$eqLogic = $this->getEqLogic();
+
+		if ($this->getName() == "Refresh") {
+			$eqLogic->cache_rss();
+			sleep(1);
+			$eqLogic->refreshWidget();
+		}
+		return;
 	}
 
     /*     * **********************Getteur Setteur*************************** */
