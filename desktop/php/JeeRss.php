@@ -2,7 +2,8 @@
 if (!isConnect('admin')) {
 	throw new Exception('{{401 - Accès non autorisé}}');
 }
-
+global $listCmdJeeRss;
+include_file('core', 'JeeRss', 'config', 'JeeRss');
 sendVarToJS('eqType', 'JeeRss');
 $eqLogics = eqLogic::byType('JeeRss');
 
@@ -57,6 +58,7 @@ foreach ($eqLogics as $eqLogic) {
 
    <ul class="nav nav-tabs" role="tablist">
     <li role="presentation" class="active"><a href="#eqlogictab" aria-controls="home" role="tab" data-toggle="tab"><i class="fa fa-tachometer"></i> {{Configuration du Flux RSS}}</a></li>
+	<li role="presentation"><a href="#commandtab" aria-controls="profile" role="tab" data-toggle="tab"><i class="fa fa-list-alt"></i> {{Commandes}}</a></li>
 </ul>
 
 <div class="tab-content" style="height:calc(100% - 50px);overflow:auto;overflow-x: hidden;">
@@ -160,6 +162,23 @@ foreach ($eqLogics as $eqLogic) {
 				</div>
 			</fieldset> 
 		</form>
+</div>
+<div role="tabpanel" class="tab-pane" id="commandtab">
+	<legend>{{Commandes}}</legend>
+			<table id="table_cmd" class="table table-bordered table-condensed">
+				<thead>
+					<tr>
+					<th class="col-sm-1">#</th>
+					<th class="col-sm-2">{{Nom}}</th>
+					<th class="col-sm-2">{{Sous-Type}}</th>
+					<th>{{Valeur}}</th>
+					<th>{{Paramètres}}</th>
+					<th></th>
+					</tr>
+				</thead>
+				<tbody>
+				</tbody>
+			</table>
 </div>
 </div>
 </div>
