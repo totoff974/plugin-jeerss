@@ -38,20 +38,4 @@ if (!isConnect()) {
            </div>		
     </fieldset>
 
-	<fieldset>
-            <legend><i class="icon loisir-darth"></i> {{Fréquence d'actualisation des Flux RSS}}</legend>
-			<div class="form-group">
-            <label class="col-sm-4 control-label">{{Actualiser le Flux RSS : }}</label>
-				<div class="col-sm-2">
-					<select class="configKey form-control" data-l1key="frequence">
-						<option value="1m">toutes les minutes</option>
-						<option value="5m">toutes les 5 minutes</option>
-						<option value="15m">toutes les 15 minutes</option>
-						<option value="30m">toutes les 30 minutes</option>
-						<option value="1h">1 fois par heure</option>
-						<option value="1j">1 fois par jour</option>
-					</select>
-               </div>
-           </div>		
-    </fieldset>
 </form>
