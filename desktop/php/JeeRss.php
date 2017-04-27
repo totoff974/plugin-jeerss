@@ -112,6 +112,19 @@ foreach ($eqLogics as $eqLogic) {
 					</div>
 				</div>
 				<div class="form-group">
+					<label class="col-lg-3 control-label">{{Fréquence de l'actualisation}}</label>
+					<div class="col-sm-3">
+						<select class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="frequence">
+							<option value="1m">{{toutes les minutes}}</option>
+							<option value="5m">{{toutes les 5 minutes}}</option>
+							<option value="15m">{{toutes les 15 minutes}}</option>
+							<option value="30m">{{toutes les 30 minutes}}</option>
+							<option value="1h">{{1 fois par heure}}</option>
+							<option value="1j">{{1 fois par jour}}</option>
+						</select>
+					</div>
+				</div>
+				<div class="form-group">
 					<label class="col-lg-3 control-label">{{Vitesse du déplacement}}</label>
 					<div class="col-sm-3">
 						<input type="number" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="vitesse"/>
