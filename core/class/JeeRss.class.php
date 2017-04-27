@@ -363,6 +363,8 @@ class JeeRssCmd extends cmd {
 			$eqLogic->cache_rss();
 			sleep(1);
 			$eqLogic->refreshWidget();
+			sleep(1);
+			$eqLogic->toHtml();			
 		}
 		return;
 	}
