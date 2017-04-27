@@ -29,69 +29,93 @@ class JeeRss extends eqLogic {
     /*     * ***********************Methode static*************************** */
 
     public static function cron() {
-		if (config::byKey('frequence', 'JeeRss') == '1m') {
-			foreach (eqLogic::byType('JeeRss') as $JeeRss) {
+		
+		foreach (eqLogic::byType('JeeRss') as $JeeRss) {
+			if ($JeeRss->getConfiguration('frequence') == '1m') {
 				$JeeRss->cache_rss();
 				sleep(1);
 				$JeeRss->refreshWidget();
-				log::add('JeeRss', 'debug', 'Actualisation Flux RSS toutes les minutes');
+				sleep(1);
+				$JeeRss->toHtml();
+				log::add('JeeRss', 'debug', 'Actualisation du Flux RSS ' . $JeeRss->getName() . ' toutes les minutes effectuée');
 			}
 		}
+		
 	}
 	
     public static function cron5() {
-		if (config::byKey('frequence', 'JeeRss') == '5m') {
-			foreach (eqLogic::byType('JeeRss') as $JeeRss) {
+
+		foreach (eqLogic::byType('JeeRss') as $JeeRss) {
+			if ($JeeRss->getConfiguration('frequence') == '5m') {
 				$JeeRss->cache_rss();
 				sleep(1);
 				$JeeRss->refreshWidget();
-				log::add('JeeRss', 'debug', 'Actualisation Flux RSS toutes les 5 minutes');
+				sleep(1);
+				$JeeRss->toHtml();
+				log::add('JeeRss', 'debug', 'Actualisation du Flux RSS ' . $JeeRss->getName() . ' toutes les 5 minutes effectuée');
 			}
 		}
+
 	}
 
     public static function cron15() {
-		if (config::byKey('frequence', 'JeeRss') == '15m') {
-			foreach (eqLogic::byType('JeeRss') as $JeeRss) {
+		
+		foreach (eqLogic::byType('JeeRss') as $JeeRss) {
+			if ($JeeRss->getConfiguration('frequence') == '15m') {
 				$JeeRss->cache_rss();
 				sleep(1);
 				$JeeRss->refreshWidget();
-				log::add('JeeRss', 'debug', 'Actualisation Flux RSS toutes les 15 minutes');
+				sleep(1);
+				$JeeRss->toHtml();
+				log::add('JeeRss', 'debug', 'Actualisation du Flux RSS ' . $JeeRss->getName() . ' toutes les 15 minutes effectuée');
 			}
 		}
+		
 	}
 	
     public static function cron30() {
-		if (config::byKey('frequence', 'JeeRss') == '30m') {
-			foreach (eqLogic::byType('JeeRss') as $JeeRss) {
+		
+		foreach (eqLogic::byType('JeeRss') as $JeeRss) {
+			if ($JeeRss->getConfiguration('frequence') == '30m') {
 				$JeeRss->cache_rss();
 				sleep(1);
 				$JeeRss->refreshWidget();
-				log::add('JeeRss', 'debug', 'Actualisation Flux RSS toutes les 30 minutes');
+				sleep(1);
+				$JeeRss->toHtml();
+				log::add('JeeRss', 'debug', 'Actualisation du Flux RSS ' . $JeeRss->getName() . ' toutes les 30 minutes effectuée');
 			}
 		}
+
 	}
 	
     public static function cronHourly() {
-		if (config::byKey('frequence', 'JeeRss') == '1h') {
-			foreach (eqLogic::byType('JeeRss') as $JeeRss) {
+		
+		foreach (eqLogic::byType('JeeRss') as $JeeRss) {
+			if ($JeeRss->getConfiguration('frequence') == '1h' OR $JeeRss->getConfiguration('frequence') == '') {
 				$JeeRss->cache_rss();
 				sleep(1);
 				$JeeRss->refreshWidget();
-				log::add('JeeRss', 'debug', 'Actualisation Flux RSS 1 fois par heure');
+				sleep(1);
+				$JeeRss->toHtml();
+				log::add('JeeRss', 'debug', 'Actualisation du Flux RSS ' . $JeeRss->getName() . ' 1 fois par heure effectuée');
 			}
 		}
+
 	}
 	
     public static function cronDaily() {
-		if (config::byKey('frequence', 'JeeRss') == '1j') {
-			foreach (eqLogic::byType('JeeRss') as $JeeRss) {
+		
+		foreach (eqLogic::byType('JeeRss') as $JeeRss) {
+			if ($JeeRss->getConfiguration('frequence') == '1j') {
 				$JeeRss->cache_rss();
 				sleep(1);
 				$JeeRss->refreshWidget();
-				log::add('JeeRss', 'debug', 'Actualisation Flux RSS 1 fois par jour');
+				sleep(1);
+				$JeeRss->toHtml();
+				log::add('JeeRss', 'debug', 'Actualisation du Flux RSS ' . $JeeRss->getName() . ' 1 fois par jour effectuée');
 			}
 		}
+
 	}
 	
 	public static function dependancy_info() {
