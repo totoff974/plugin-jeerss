@@ -230,10 +230,25 @@ class JeeRss extends eqLogic {
 			$date = JeeRss::getConfiguration('date');
 			$heure = JeeRss::getConfiguration('heure');
 			
-			for ($i = 1; $i <= 15; $i++) {
-				$espacement .= '&nbsp;';
+			if(JeeRss::getConfiguration('espacement_flux') < 1) {
+				$espacement_flux = 1;
 			}
-			$espacement = $espacement.'|'.$espacement;
+			else {
+				$espacement_flux = JeeRss::getConfiguration('espacement_flux');
+			}
+			
+			
+			if (JeeRss::getConfiguration('sens') == "right" or JeeRss::getConfiguration('sens') == "left") {
+				for ($i = 1; $i <= (15*$espacement_flux); $i++) {
+					$espacement .= '&nbsp;';
+				}
+				$espacement = $espacement.'|'.$espacement;
+			}
+			elseif (JeeRss::getConfiguration('sens') == "up" or JeeRss::getConfiguration('sens') == "down") {
+				for ($i = 1; $i <= $espacement_flux; $i++) {
+					$espacement .= '</br>';
+				}
+			}
 			
 			foreach ($rss as $tab) {
 				if ($date == 1) {
