@@ -142,6 +142,12 @@ foreach ($eqLogics as $eqLogic) {
 					</div>
 				</div>
 				<div class="form-group">
+					<label class="col-lg-3 control-label">{{Espacement des Flux}}</label>
+					<div class="col-sm-3">
+						<input type="number" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="espacement_flux"/>
+					</div>
+				</div>
+				<div class="form-group">
 				<label class="col-lg-3 control-label">{{Afficher la date et/ou l'heure}}</label>
 					<div class="col-sm-9">
 						<label class="checkbox-inline"><input type="checkbox" class="eqLogicAttr" data-l1key="configuration" data-l2key="date" checked/>{{Date}}</label>
