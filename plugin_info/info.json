@@ -1,0 +1,11 @@
+{
+	"id" : "JeeRss",
+	"name" : "JeeRss",
+	"description" : "Plugin pour lire un flux Rss",
+	"licence" : "AGPL",
+	"author" : "Christophe CHAMANT",
+	"require" : "2.3",
+	"category" : "communication",
+	"hasDependency" : false,
+	"hasOwnDeamon" : false
+}
