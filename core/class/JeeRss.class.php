@@ -164,7 +164,21 @@ class JeeRss extends eqLogic {
     /*     * *********************Méthodes d'instance************************* */
 	
     public function preInsert() {
-
+		if (JeeRss::getConfiguration('vitesse') == null) {
+			JeeRss::setConfiguration('vitesse', 4);
+		}
+		if (JeeRss::getConfiguration('nb_flux') == null) {
+			JeeRss::setConfiguration('nb_flux', 5);
+		}
+		if (JeeRss::getConfiguration('frequence') == null) {
+			JeeRss::setConfiguration('frequence', "30m");
+		}
+		if (JeeRss::getConfiguration('sens') == null) {
+			JeeRss::setConfiguration('sens', "left");
+		}
+		if (JeeRss::getConfiguration('espacement_flux') == null) {
+			JeeRss::setConfiguration('espacement_flux', 1);
+		}
     }
 
     public function postInsert() {
@@ -172,8 +186,22 @@ class JeeRss extends eqLogic {
     }
 
     public function preSave() {
-
-    }
+		if (JeeRss::getConfiguration('vitesse') == null) {
+			JeeRss::setConfiguration('vitesse', 4);
+		}
+		if (JeeRss::getConfiguration('nb_flux') == null) {
+			JeeRss::setConfiguration('nb_flux', 5);
+		}
+		if (JeeRss::getConfiguration('frequence') == null) {
+			JeeRss::setConfiguration('frequence', "30m");
+		}
+		if (JeeRss::getConfiguration('sens') == null) {
+			JeeRss::setConfiguration('sens', "left");
+		}
+		if (JeeRss::getConfiguration('espacement_flux') == null) {
+			JeeRss::setConfiguration('espacement_flux', 1);
+		}
+	}
 
     public function postSave() {
 		if (!$this->getId())
@@ -250,7 +278,7 @@ class JeeRss extends eqLogic {
 				}
 			}
 			
-			foreach ($rss as $tab) {
+			foreach (array_slice($rss, 0, JeeRss::getConfiguration('nb_flux')) as $tab) {
 				if ($date == 1) {
 					$ligne .= ' le ' . date("d/m/Y",strtotime($tab[3]));
 				}
