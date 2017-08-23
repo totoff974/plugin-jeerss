@@ -112,6 +112,17 @@ foreach ($eqLogics as $eqLogic) {
 					</div>
 				</div>
 				<div class="form-group">
+					<label class="col-lg-3 control-label">{{Nombre de flux à afficher}}</label>
+					<div class="col-sm-3">
+						<select class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="nb_flux">
+							<option value=1>{{1}}</option>
+							<option value=5>{{5}}</option>
+							<option value=10>{{10}}</option>
+							<option value=-1>{{tous}}</option>
+						</select>
+					</div>
+				</div>
+				<div class="form-group">
 					<label class="col-lg-3 control-label">{{Fréquence de l'actualisation}}</label>
 					<div class="col-sm-3">
 						<select class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="frequence">
