@@ -29,5 +29,4 @@ if (!isConnect()) {
             <legend><i class="icon loisir-darth"></i> {{Aide au développement}}</legend>
 			<span><i>Ce plugin est gratuit, le don est laissé au libre choix de chacun en fonction de sa satisfaction pour m'aider au développement. Merci.</i></span>
     </fieldset>
-
 </form>
