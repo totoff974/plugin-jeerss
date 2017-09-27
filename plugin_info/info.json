@@ -7,5 +7,8 @@
 	"require" : "2.3",
 	"category" : "communication",
 	"hasDependency" : false,
-	"hasOwnDeamon" : false
+	"hasOwnDeamon" : false,
+	"maxDependancyInstallTime" : 120,
+	"changelog" : "https://github.com/totoff974/JeeRss/blob/stable/doc/#language#/changelog.asciidoc",
+	"documentation" : "https://github.com/totoff974/JeeRss/blob/stable/doc/#language#/index.asciidoc"
 }
