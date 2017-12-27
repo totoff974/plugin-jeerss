@@ -37,6 +37,8 @@ class JeeRss extends eqLogic {
 				$JeeRss->refreshWidget();
 				sleep(1);
 				$JeeRss->toHtml();
+				sleep(1);
+				$JeeRss->affiche_rss();
 				log::add('JeeRss', 'debug', 'Actualisation du Flux RSS ' . $JeeRss->getName() . ' toutes les minutes effectuée');
 			}
 		}
@@ -52,6 +54,8 @@ class JeeRss extends eqLogic {
 				$JeeRss->refreshWidget();
 				sleep(1);
 				$JeeRss->toHtml();
+				sleep(1);
+				$JeeRss->affiche_rss();
 				log::add('JeeRss', 'debug', 'Actualisation du Flux RSS ' . $JeeRss->getName() . ' toutes les 5 minutes effectuée');
 			}
 		}
@@ -67,6 +71,8 @@ class JeeRss extends eqLogic {
 				$JeeRss->refreshWidget();
 				sleep(1);
 				$JeeRss->toHtml();
+				sleep(1);
+				$JeeRss->affiche_rss();
 				log::add('JeeRss', 'debug', 'Actualisation du Flux RSS ' . $JeeRss->getName() . ' toutes les 15 minutes effectuée');
 			}
 		}
@@ -82,6 +88,8 @@ class JeeRss extends eqLogic {
 				$JeeRss->refreshWidget();
 				sleep(1);
 				$JeeRss->toHtml();
+				sleep(1);
+				$JeeRss->affiche_rss();
 				log::add('JeeRss', 'debug', 'Actualisation du Flux RSS ' . $JeeRss->getName() . ' toutes les 30 minutes effectuée');
 			}
 		}
@@ -97,6 +105,8 @@ class JeeRss extends eqLogic {
 				$JeeRss->refreshWidget();
 				sleep(1);
 				$JeeRss->toHtml();
+				sleep(1);
+				$JeeRss->affiche_rss();
 				log::add('JeeRss', 'debug', 'Actualisation du Flux RSS ' . $JeeRss->getName() . ' 1 fois par heure effectuée');
 			}
 		}
@@ -112,6 +122,8 @@ class JeeRss extends eqLogic {
 				$JeeRss->refreshWidget();
 				sleep(1);
 				$JeeRss->toHtml();
+				sleep(1);
+				$JeeRss->affiche_rss();
 				log::add('JeeRss', 'debug', 'Actualisation du Flux RSS ' . $JeeRss->getName() . ' 1 fois par jour effectuée');
 			}
 		}
