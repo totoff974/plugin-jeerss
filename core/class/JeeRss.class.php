@@ -176,19 +176,19 @@ class JeeRss extends eqLogic {
     /*     * *********************Méthodes d'instance************************* */
 	
     public function preInsert() {
-		if (JeeRss::getConfiguration('vitesse') == null) {
+		if (JeeRss::getConfiguration('vitesse') === null) {
 			JeeRss::setConfiguration('vitesse', 4);
 		}
-		if (JeeRss::getConfiguration('nb_flux') == null) {
+		if (JeeRss::getConfiguration('nb_flux') === null) {
 			JeeRss::setConfiguration('nb_flux', 5);
 		}
-		if (JeeRss::getConfiguration('frequence') == null) {
+		if (JeeRss::getConfiguration('frequence') === null) {
 			JeeRss::setConfiguration('frequence', "30m");
 		}
-		if (JeeRss::getConfiguration('sens') == null) {
+		if (JeeRss::getConfiguration('sens') === null) {
 			JeeRss::setConfiguration('sens', "left");
 		}
-		if (JeeRss::getConfiguration('espacement_flux') == null) {
+		if (JeeRss::getConfiguration('espacement_flux') === null) {
 			JeeRss::setConfiguration('espacement_flux', 1);
 		}
     }
@@ -198,19 +198,19 @@ class JeeRss extends eqLogic {
     }
 
     public function preSave() {
-		if (JeeRss::getConfiguration('vitesse') == null) {
+		if (JeeRss::getConfiguration('vitesse') === null) {
 			JeeRss::setConfiguration('vitesse', 4);
 		}
-		if (JeeRss::getConfiguration('nb_flux') == null) {
+		if (JeeRss::getConfiguration('nb_flux') === null) {
 			JeeRss::setConfiguration('nb_flux', 5);
 		}
-		if (JeeRss::getConfiguration('frequence') == null) {
+		if (JeeRss::getConfiguration('frequence') === null) {
 			JeeRss::setConfiguration('frequence', "30m");
 		}
-		if (JeeRss::getConfiguration('sens') == null) {
+		if (JeeRss::getConfiguration('sens') === null) {
 			JeeRss::setConfiguration('sens', "left");
 		}
-		if (JeeRss::getConfiguration('espacement_flux') == null) {
+		if (JeeRss::getConfiguration('espacement_flux') === null) {
 			JeeRss::setConfiguration('espacement_flux', 1);
 		}
 	}
@@ -453,4 +453,4 @@ class JeeRssCmd extends cmd {
     /*     * **********************Getteur Setteur*************************** */
 }
 
-?>
+ 
