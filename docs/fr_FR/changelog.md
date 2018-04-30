@@ -1,6 +1,10 @@
 Changelog détaillé :
 <https://github.com/Jeedom-Plugins-Extra/plugin-jeerss/commits/master>
 
+30-04-2018 15:45
+===
+
+-   ajout des 10 dernières info
 
 23-02-2018 12:00
 ===
