@@ -363,10 +363,25 @@ class JeeRss extends eqLogic {
 		
 		$rss = JeeRss::lecture_rss("$fichier",array("title","link","description","pubDate"));
 
+		$i = 0;
 		foreach (eqLogic::getCmd() as $info) {
-			$info->setConfiguration('titre', $rss[0][0]);
-			$info->save();
-			$info->event($rss[0][0]);
+			
+			while (html_entity_decode($rss[$i][0]) == "" and $i <= 30) {
+				$i++;
+			}
+			
+			if (html_entity_decode($rss[$i][0]) != "") {
+				$info->setConfiguration('titre', html_entity_decode($rss[$i][0]));
+				$info->save();
+				$info->event(html_entity_decode($rss[$i][0]));
+				$i++;
+			}
+			else {
+				$info->setConfiguration('titre', '');
+				$info->save();
+				$info->event();
+				$i++;
+			}
 		}
 			
 		return $rss;
@@ -408,6 +423,7 @@ class JeeRss extends eqLogic {
 					$JeeRssCmd->setEqLogic_id($this->id);
 					$JeeRssCmd->setType($cmd['type']);
 					$JeeRssCmd->setSubType($cmd['subType']);
+					$JeeRssCmd->setOrder($cmd['order']);
 					$JeeRssCmd->setConfiguration('titre', $cmd['configuration']['titre']);
 					$JeeRssCmd->save();
 			   }
