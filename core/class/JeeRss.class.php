@@ -176,6 +176,9 @@ class JeeRss extends eqLogic {
     /*     * *********************Méthodes d'instance************************* */
 	
     public function preInsert() {
+	    	if (JeeRss::getConfiguration('fg_color') == null) {
+			JeeRss::setConfiguration('fg_color', "#ffffff");
+		}
 		if (JeeRss::getConfiguration('vitesse') == null) {
 			JeeRss::setConfiguration('vitesse', 4);
 		}
@@ -198,6 +201,9 @@ class JeeRss extends eqLogic {
     }
 
     public function preSave() {
+	    	if (JeeRss::getConfiguration('fg_color') == null) {
+			JeeRss::setConfiguration('fg_color', "#ffffff");
+		}
 		if (JeeRss::getConfiguration('vitesse') == null) {
 			JeeRss::setConfiguration('vitesse', 4);
 		}
@@ -258,6 +264,7 @@ class JeeRss extends eqLogic {
 				$replace['#cmd_refresh_id#'] = $cmd->getId();
 			}
 			
+			$replace['#fg_color#'] = JeeRss::getConfiguration('fg_color');
 			$replace['#vitesse#'] = JeeRss::getConfiguration('vitesse');
 			$replace['#direction#'] = JeeRss::getConfiguration('sens');
 
@@ -298,7 +305,7 @@ class JeeRss extends eqLogic {
 					$ligne .= ' à ' . date("H:m",strtotime($tab[3])); 
 				}
 				
-				$ligne .= ' - ' . '<a target="_blank" href="'.$tab[1].'">'.$tab[0].'</a>' . $espacement;
+				$ligne .= ' - ' . '<a target="_blank" href="'.$tab[1].'"><b>'.$tab[0].'</b></a>' . $espacement;
 			}
 
 			$replace['#flux#'] = $ligne;
