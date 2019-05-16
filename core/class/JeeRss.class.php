@@ -305,7 +305,7 @@ class JeeRss extends eqLogic {
 					$ligne .= ' à ' . date("H:m",strtotime($tab[3])); 
 				}
 				
-				$ligne .= ' - ' . '<a target="_blank" href="'.$tab[1].'"><b>'.$tab[0].'</b></a>' . $espacement;
+				$ligne .= ' - ' . '<a style="color:' . JeeRss::getConfiguration('fg_color') . ';" target="_blank" href="'.$tab[1].'"><span style="color:' . JeeRss::getConfiguration('fg_color') . ';"><b>'.$tab[0].'</b></span></a>' . $espacement;
 			}
 
 			$replace['#flux#'] = $ligne;
