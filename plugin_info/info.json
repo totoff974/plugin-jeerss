@@ -9,6 +9,6 @@
 	"hasDependency" : false,
 	"hasOwnDeamon" : false,
 	"maxDependancyInstallTime" : 120,
-	"changelog" : "https://Jeedom-Plugins-Extra.github.io/plugin-jeerss/#language#/changelog",
-	"documentation" : "https://Jeedom-Plugins-Extra.github.io/plugin-jeerss/#language#/"
+	"changelog" : "https://nextdom.github.io/plugin-jeerss/#language#/changelog",
+	"documentation" : "https://nextdom.github.io/plugin-jeerss/#language#/"
 }
