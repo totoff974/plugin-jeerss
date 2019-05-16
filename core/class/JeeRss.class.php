@@ -401,7 +401,7 @@ class JeeRss extends eqLogic {
 		exec($cmd);
 		exec($cmd_droit);
 	}
-
+	
 	public function remove_cache_rss() {
 		$fichier = realpath(dirname(__FILE__) . '/../../core/config') . '/' . JeeRss::getId();
 		@unlink($fichier);
