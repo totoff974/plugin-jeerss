@@ -111,6 +111,14 @@ foreach ($eqLogics as $eqLogic) {
 						<input type="text" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="adresse" placeholder="{{https://www.jeedom.com/blog/?feed=rss2}}"/>
 					</div>
 				</div>
+				
+				<div class="form-group">
+					<label class="col-sm-3 control-label">Couleur du texte</label>
+					<div class="col-sm-3">
+						<input type="color" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="fg_color" value="#ffffff"/>
+					</div>
+				</div>
+				
 				<div class="form-group">
 					<label class="col-lg-3 control-label">{{Nombre de flux à afficher}}</label>
 					<div class="col-sm-3">
