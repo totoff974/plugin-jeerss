@@ -249,7 +249,7 @@ class JeeRss extends eqLogic {
 		$_version = jeedom::versionAlias($_version);
 		
 		
-		$cache_Rss = dirname(__FILE__) . '/../../core/config/' . JeeRss::getId();
+		$cache_Rss = realpath(dirname(__FILE__) . '/../../core/config/') . JeeRss::getId();
 		if(file_exists($cache_Rss)) {
 			log::add('JeeRss', 'debug', 'DEBUG - Le fichier cache existe -> ' . $cache_Rss);
 			$rss = JeeRss::affiche_rss();
@@ -359,7 +359,7 @@ class JeeRss extends eqLogic {
 		// pubDate				Date de publication
 		// source				Channel auquel l'item appartient		
 		
-		$fichier = dirname(__FILE__) . '/../../core/config/' . JeeRss::getId();
+		$fichier = realpath(dirname(__FILE__) . '/../../core/config/') . JeeRss::getId();
 		
 		$rss = JeeRss::lecture_rss("$fichier",array("title","link","description","pubDate"));
 		
@@ -396,14 +396,14 @@ class JeeRss extends eqLogic {
 			$adresse = JeeRss::getConfiguration('adresse');
 		}
 		
-		$cmd = 'wget ' . $adresse . ' -O ' . dirname(__FILE__) . '/../../core/config/' . JeeRss::getId() . ' 2>&1';
-		$cmd_droit =  'sudo chmod 777 ' . dirname(__FILE__) . '/../../core/config/' . JeeRss::getId() . ' 2>&1';
+		$cmd = 'wget ' . $adresse . ' -O ' . realpath(dirname(__FILE__) . '/../../core/config/') . JeeRss::getId() . ' 2>&1';
+		$cmd_droit =  'sudo chmod 777 ' . realpath(dirname(__FILE__) . '/../../core/config/') . JeeRss::getId() . ' 2>&1';
 		exec($cmd);
 		exec($cmd_droit);
 	}
 
 	public function remove_cache_rss() {
-		$fichier = dirname(__FILE__) . '/../../core/config/' . JeeRss::getId();
+		$fichier = realpath(dirname(__FILE__) . '/../../core/config/') . JeeRss::getId();
 		@unlink($fichier);
 		log::add('JeeRss', 'debug', 'Suppression Cache Flux RSS : ' . JeeRss::getName() . ' -> ' . $fichier);
 	}
