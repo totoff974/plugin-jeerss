@@ -1,2 +1,6 @@
+- 17/05/2019 21:00 → correction du bug pour certains liens avec paramètres (wget entre "")
+- 16/05/2019 16:00 → ajout sélecteur de la couleur du texte
+- 16/05/2019 14:20 → correction mineure realpath(dirname(__FILE__) . '/../../core/config')
+- 30/04/2018 15:45 → ajout des 10 dernières info
 - 27/12/2017 17:17 → actualisation du flux en arrière plan 'affiche_rss'
 - 27/09/2017 11:16 → Création d’un point 0 mise en conformité du plugin

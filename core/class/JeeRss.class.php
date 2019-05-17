@@ -176,6 +176,9 @@ class JeeRss extends eqLogic {
     /*     * *********************Méthodes d'instance************************* */
 
     public function preInsert() {
+        if (JeeRss::getConfiguration('fg_color') == null) {
+            JeeRss::setConfiguration('fg_color', "#ffffff");
+        }
         if (JeeRss::getConfiguration('vitesse') === null) {
             JeeRss::setConfiguration('vitesse', 4);
         }
@@ -198,6 +201,9 @@ class JeeRss extends eqLogic {
     }
 
     public function preSave() {
+        if (JeeRss::getConfiguration('fg_color') == null) {
+            JeeRss::setConfiguration('fg_color', "#ffffff");
+        }
         if (JeeRss::getConfiguration('vitesse') === null) {
             JeeRss::setConfiguration('vitesse', 4);
         }
@@ -249,7 +255,7 @@ class JeeRss extends eqLogic {
         $_version = jeedom::versionAlias($_version);
 
 
-        $cache_Rss = dirname(__FILE__) . '/../../core/config/' . JeeRss::getId();
+        $cache_Rss = realpath(dirname(__FILE__) . '/../../core/config') . '/' . JeeRss::getId();
         if(file_exists($cache_Rss)) {
             log::add('JeeRss', 'debug', 'DEBUG - Le fichier cache existe -> ' . $cache_Rss);
             $rss = JeeRss::affiche_rss();
@@ -266,7 +272,9 @@ class JeeRss extends eqLogic {
             $auto            = JeeRss::getConfiguration('auto');
             $nbFeed          = JeeRss::getConfiguration('nb_flux');
             $espacement_flux = JeeRss::getConfiguration('espacement_flux');
+            $fg_color        = JeeRss::getConfiguration('fg_color');
 
+            $replace['#fg_color#'] = JeeRss::getConfiguration('fg_color');
             $replace['#vitesse#']   = $speed;
             $replace['#direction#'] = $direction;
 
@@ -305,7 +313,7 @@ class JeeRss extends eqLogic {
                     $ligne .= ' à ' . date("H:m",strtotime($tab[3]));
                 }
 
-                $ligne .= ' - ' . '<a target="_blank" href="'.$tab[1].'">'.$tab[0].'</a>' . $espacement;
+                $ligne .= ' - ' . '<a style="color:' . $fg_color . ';" target="_blank" href="'.$tab[1].'"><span style="color:' . $fg_color . ';"><b>'.$tab[0].'</b></span></a>' . $espacement;
             }
 
             $replace['#flux#'] = $ligne;
@@ -360,7 +368,7 @@ class JeeRss extends eqLogic {
         // pubDate              Date de publication
         // source               Channel auquel l'item appartient
 
-        $fichier = dirname(__FILE__) . '/../../core/config/' . JeeRss::getId();
+        $fichier = realpath(dirname(__FILE__) . '/../../core/config') . '/' . JeeRss::getId();
         $rss     = JeeRss::lecture_rss("$fichier", array("title", "link", "description", "pubDate"));
         $i       = 0;
 
@@ -396,14 +404,14 @@ class JeeRss extends eqLogic {
             $adresse = JeeRss::getConfiguration('adresse');
         }
 
-        $cmd = 'wget ' . $adresse . ' -O ' . dirname(__FILE__) . '/../../core/config/' . JeeRss::getId() . ' 2>&1';
-        $cmd_droit =  'sudo chmod 777 ' . dirname(__FILE__) . '/../../core/config/' . JeeRss::getId() . ' 2>&1';
+        $cmd = 'wget "' . $adresse . '" -O ' . realpath(dirname(__FILE__) . '/../../core/config') . '/' . JeeRss::getId() . ' 2>&1';
+        $cmd_droit =  'sudo chmod 777 ' . realpath(dirname(__FILE__) . '/../../core/config') . '/' . JeeRss::getId() . ' 2>&1';
         exec($cmd);
         exec($cmd_droit);
     }
 
     public function remove_cache_rss() {
-        $fichier = dirname(__FILE__) . '/../../core/config/' . JeeRss::getId();
+        $fichier = realpath(dirname(__FILE__) . '/../../core/config') . '/' . JeeRss::getId();
         @unlink($fichier);
         log::add('JeeRss', 'debug', 'Suppression Cache Flux RSS : ' . JeeRss::getName() . ' -> ' . $fichier);
     }
