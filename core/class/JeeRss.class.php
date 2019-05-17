@@ -403,7 +403,7 @@ class JeeRss extends eqLogic {
 			$adresse = JeeRss::getConfiguration('adresse');
 		}
 		
-		$cmd = 'wget ' . $adresse . ' -O ' . realpath(dirname(__FILE__) . '/../../core/config') . '/' . JeeRss::getId() . ' 2>&1';
+		$cmd = 'wget "' . $adresse . '" -O ' . realpath(dirname(__FILE__) . '/../../core/config') . '/' . JeeRss::getId() . ' 2>&1';
 		$cmd_droit =  'sudo chmod 777 ' . realpath(dirname(__FILE__) . '/../../core/config') . '/' . JeeRss::getId() . ' 2>&1';
 		exec($cmd);
 		exec($cmd_droit);
