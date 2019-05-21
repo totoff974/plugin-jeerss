@@ -7,6 +7,7 @@ Changelog détaillé :
 -   ajout du selecteur de couleur pour le texte du flux
 -   optimisation du code
 -   optimisation de la fonction affiche_rss() pour le traitement du cache
+-   github team NextDom modification info.json
 
 30-04-2018 15:45
 ===
