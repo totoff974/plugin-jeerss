@@ -1,6 +1,14 @@
 Changelog détaillé :
 <https://github.com/Jeedom-Plugins-Extra/plugin-jeerss/commits/master>
 
+21-05-2019 21:55
+===
+
+-   ajout du selecteur de couleur pour le texte du flux
+-   optimisation du code
+-   optimisation de la fonction affiche_rss() pour le traitement du cache
+-   github team NextDom modification info.json
+
 30-04-2018 15:45
 ===
 
@@ -15,6 +23,7 @@ Changelog détaillé :
 ===
 
 -   actualisation du flux en arrière plan 'affiche_rss'
+
 27-09-2017 11:16
 ===
 

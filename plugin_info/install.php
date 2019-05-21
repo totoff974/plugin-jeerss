@@ -23,6 +23,7 @@ function JeeRss_install() {
 }
 
 function JeeRss_update() {
+		JeeRss::autoAjoutCommande();
 		if (JeeRss::getConfiguration('vitesse') == null) {
 			JeeRss::setConfiguration('vitesse', 4);
 		}
