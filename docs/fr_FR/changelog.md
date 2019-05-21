@@ -22,6 +22,7 @@ Changelog détaillé :
 ===
 
 -   actualisation du flux en arrière plan 'affiche_rss'
+
 27-09-2017 11:16
 ===
 
