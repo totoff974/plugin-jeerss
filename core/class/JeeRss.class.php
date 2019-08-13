@@ -343,7 +343,8 @@ class JeeRss extends eqLogic {
 
                     // on découpe la chaine pour obtenir le contenu de l'objet
                     $tmp2 = preg_split("/<\/?".$objet.">/",$tmp[$i]);
-
+                    $mask = array("<![CDATA[", "]]>");
+                    $tmp2 = str_replace($mask, "", $tmp2);
                     // on ajoute le contenu de l'objet au tableau resultat
                     $resultat[$i-1][] = @$tmp2[1];
                 }
