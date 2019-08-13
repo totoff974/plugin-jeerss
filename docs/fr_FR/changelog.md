@@ -1,6 +1,11 @@
 Changelog détaillé :
 <https://github.com/Jeedom-Plugins-Extra/plugin-jeerss/commits/master>
 
+13/08/2019 14:00
+===
+
+- suppression des balises CDATA des flux
+
 21-05-2019 21:55
 ===
 
