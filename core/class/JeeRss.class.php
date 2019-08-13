@@ -325,7 +325,6 @@ class JeeRss extends eqLogic {
         // les variables
 
         $html = template_replace($replace, getTemplate('core', $_version, 'current','JeeRss'));
-
         return $html;
     }
 
@@ -333,7 +332,6 @@ class JeeRss extends eqLogic {
         $resultat = [];
         // on lit tout le fichier
         if($chaine = @implode("",@file($fichier))) {
-
             // on découpe la chaine obtenue en items
             $tmp = preg_split("/<\/?"."item".">/",$chaine);
 
@@ -345,7 +343,8 @@ class JeeRss extends eqLogic {
 
                     // on découpe la chaine pour obtenir le contenu de l'objet
                     $tmp2 = preg_split("/<\/?".$objet.">/",$tmp[$i]);
-
+                    $mask = array("<![CDATA[", "]]>");
+                    $tmp2 = str_replace($mask, "", $tmp2);
                     // on ajoute le contenu de l'objet au tableau resultat
                     $resultat[$i-1][] = @$tmp2[1];
                 }
@@ -371,27 +370,17 @@ class JeeRss extends eqLogic {
         $fichier = realpath(dirname(__FILE__) . '/../../core/config') . '/' . JeeRss::getId();
         $rss     = JeeRss::lecture_rss("$fichier", array("title", "link", "description", "pubDate"));
         $i       = 0;
-
-        foreach (eqLogic::getCmd() as $info) {
-            foreach ($rss as $feed) {
-                $title       = array_shift($feed);
-                $link        = array_shift($feed);
-                $description = array_shift($feed);
-                $pubDate     = array_shift($feed);
-                if ((false == isset($title)) ||
-                    (""    == count($title))) {
-                    $info->setConfiguration('titre', '');
-                    $info->save();
-                    $info->event("");
-                    continue;
-                }
-                $title = html_entity_decode($title);
-                $info->setConfiguration('titre', $title);
-                $info->save();
-                $info->event($title);
+        foreach (eqLogic::getCmd('info') as $info) {
+            $title = html_entity_decode($rss[$i][0]);
+            if (isset($rss[$i][0]) == false){
+                $i++;
             }
+            $title = html_entity_decode($rss[$i][0]);
+            $i++;
+            $info->setConfiguration('titre', $title);
+            $info->save();
+            $info->event($title);
         }
-
         return $rss;
     }
 
