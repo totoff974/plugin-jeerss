@@ -1,6 +1,11 @@
 Changelog détaillé :
 <https://github.com/Jeedom-Plugins-Extra/plugin-jeerss/commits/master>
 
+16-08-2019 11:00
+===
+
+-   Fix php 7.3 (object -> jeeObject)
+
 13/08/2019 14:00
 ===
 
